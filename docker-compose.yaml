@@ -4,10 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.python
-    restart: always
     depends_on:
-      - db:
-        condition: service_healthy
+        - db
     environment:
       MYSQL_HOST: db
       MYSQL_PORT: 3306
@@ -37,3 +35,5 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
+volumes:
+  my-db:      
