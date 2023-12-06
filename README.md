@@ -1,7 +1,7 @@
 # csv-to-db
 Run docker compose up -d and check result in db :) 
 
-#Vertical Scaling (Up):
+# Vertical Scaling (Up):
 Optimize Hardware:
 Upgrade your server's hardware, such as CPU, RAM, and storage, to handle larger datasets and improve processing speed.
 
@@ -14,7 +14,7 @@ Consider using Solid State Drives (SSD) for storage, as they can significantly i
 Vertical Database Sharding:
 If your database schema allows, consider vertical sharding by splitting tables with many columns into smaller, more manageable ones. This can improve query performance.
 
-#Horizontal Scaling (Out):
+# Horizontal Scaling (Out):
 Distributed Processing:
 Explore distributed processing frameworks like Apache Spark or Apache Flink. These frameworks allow you to process large datasets in parallel across multiple nodes, distributing the workload.
 
