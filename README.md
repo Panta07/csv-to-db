@@ -44,3 +44,49 @@ Implement caching mechanisms to store frequently accessed data in-memory, reduci
 Monitoring and Scaling Policies:
 
 Implement monitoring tools to keep track of resource utilization and system performance. Set up scaling policies that automatically adjust resources based on predefined thresholds.
+
+# Possible Producers:
+Automated Data Export Systems: Scheduled exports from various sources.
+Data Streams: Real-time feeds from systems like IoT devices.
+Application Logs: Logging systems that can output CSV files for ingestion.
+APIs: If data is obtained through an API, you can integrate API calls in the function.
+
+# Resources:
+Memory: Enough to process CSV files without swapping to disk.
+Processor: Multicore CPU for efficient parallel processing of data operations.
+I/O Throughput: Fast SSDs if dealing with a large number of file operations.
+Network: Adequate bandwidth if the CSV files are being streamed or
+fetched over the network.
+Executors and Instances: Depending on the size of the data, parallel processing might be beneficial. Tools like Apache Spark can be used for distributed processing.
+
+# Running Multiple Instances:
+If you run multiple instances of the same
+application, they could try to write the same data to the database,
+resulting in possible data duplication, database locks, or other
+concurrency issues. To prevent conflicts when running multiple instances, you can
+implement a locking mechanism, distribute the workload (for instance,
+each instance processes a different set of CSV files or rows), or use
+an orchestration tool that manages parallel executions. For robust concurrent processing,
+consider:Adapting the script to use a client/server DBMS.
+Implementing lock mechanisms or using a database that supports ACID
+transactions with concurrent users (e.g., PostgreSQL).
+
+# Accessing Processed Data (BI Architecture):
+Data Layer: Using a more scalable database system like PostgreSQL,
+MySQL, or Azure SQL Database.
+ETL Layer: Tools like Apache Airflow for any complex ETL needs.
+Visualization Layer: Power BI, Tableau, or Apache Superset for
+dashboarding and reporting.
+Presenting Data: Expose dashboards and reports through web interfaces,
+or use APIs for programmatic access.
+Deployment: Host components on cloud services like Azure, AWS, or GCP
+for scalability and robustness.
+
+# BI Architecture Example:
+[Data Sources (CSV Files)] -> [Python ETL Application] -> [Scalable
+Database/Data Warehouse]
+
+-> [ETL Tools (if needed for further processing)] -> [BI Tools for
+Visualization and Reporting]
+
+-> [Accessed via Dashboards/APIs/Reports]
