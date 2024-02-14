@@ -212,3 +212,66 @@ Communication: Services in a choreographed system often communicate through a me
 Coupling: There's looser coupling between services since they don't depend on a central orchestrator, which can enhance resilience and flexibility.
 Example: Publish/Subscribe (Pub/Sub) messaging and event sourcing are examples of where choreography is typically applied.
 In summary, orchestration is about central command and control by an orchestrator service, whereas choreography is about decentralized coordination between services through events. Each approach has its own set of trade-offs, and the choice between them depends on the specific requirements and context of your application.
+
+
+## Data Replication
+Replication in the context of big data is essential for several reasons that hinge on the principles of fault tolerance, data availability, and performance optimization. Below are the key reasons why replication is crucial in big data environments.
+
+# Fault Tolerance
+
+Redundancy: Replication provides multiple copies of data. If one copy is lost due to a hardware failure, other copies remain available, ensuring that the system can continue to operate correctly without data loss.
+Data Safety: By spreading replicas across different physical machines, data centers, or even geographical regions, big data systems can withstand various failure scenarios, from disk failures to entire data center outages.
+
+# Data Availability
+
+High Availability: When data is replicated, it can be served from multiple locations which means that if one node is down, clients can be rerouted to another node with the same data.
+Disaster Recovery: In catastrophic events, having replicated data means that the data can be recovered from another location that wasn't affected by the event.
+Network Partition Handling: In cases where a network partition occurs, having replicas in different partitions can ensure that data is still available to those nodes that are cut off from the primary data source.
+
+# Performance
+
+Load Balancing: Replication allows a system to spread read requests across multiple machines, thereby reducing the load on a single machine and improving response times for those requests.
+Local Reads: Having local replicas of data can decrease read latencies for distributed systems, especially in geographically distributed architectures where users are globally dispersed.
+Write Performance: In some configurations, replication can be used to enhance write performance by asynchronously replicating the data.
+
+# Scalability
+
+Horizontal Scaling: Big data systems often need to scale out to handle increasing amounts of data. Replication is a technique that facilitates horizontal scaling by allowing more nodes to handle more data and client requests.
+Data Distribution: Replication ensures that data is distributed across the cluster, allowing the workload to be processed in parallel which increases throughput.
+
+# Simplified Data Processing
+
+Predictable Performance: Replicated data can make performance more predictable since there are multiple sources from which to read, and the system can choose the path of least resistance.
+Data Locality: For compute tasks, having data replicated to nodes that perform the computation can minimize network transfer and take advantage of data locality.
+
+# Legal and Compliance
+
+Data Governance: Certain laws and regulations may require that data be stored in multiple locations or that there be a disaster recovery plan in place including off-site backups or replicas.
+
+# System Upgrades and Maintenance
+
+Rolling Upgrades: Replication allows for upgrades and maintenance tasks to be performed with little to no system downtime, as one replica can be taken down for upgrades while others continue to serve data.
+Given the critical importance of replication in big data systems, replication strategies are integral to the design of big data solutions, such as distributed databases (e.g., Cassandra, MongoDB), distributed file systems (e.g., HDFS), and data processing frameworks (e.g., Apache Kafka for data streams). These systems all incorporate replication as a core feature to ensure that the above objectives are met.
+
+
+## Apache Hadoop
+ 
+Apache Hadoop is an open-source software framework used for distributed storage and processing of large datasets using the MapReduce programming model. It is designed to scale up from single servers to thousands of machines, each offering local computation and storage. Rather than relying on hardware to deliver high-availability, the library itself is designed to detect and handle failures at the application layer, providing a highly available service on top of a cluster of computers, each of which may be prone to failures.
+
+Here are some of the core components of the Apache Hadoop framework:
+
+1. Hadoop Distributed File System (HDFS)
+HDFS is a distributed, scalable, and portable file-system written in Java. It is the storage layer for Hadoop. It stores each file as a sequence of blocks; all blocks in a file except the last block are the same size.
+
+2. Hadoop MapReduce
+MapReduce is a programming model for processing large datasets with a parallel, distributed algorithm on a cluster. A MapReduce job usually splits the input dataset into independent chunks, which are processed in a completely parallel manner in the map phase. The framework sorts the outputs of the maps, which are then input to the reduce tasks.
+
+3. Hadoop YARN
+YARN (Yet Another Resource Negotiator) is the resource management layer for Hadoop. It allows multiple data processing engines such as real-time streaming, data science, and batch processing to handle data stored in a single platform, thereby unlocking an entire ecosystem of Hadoop tools that can fit into the data processing pipeline.
+
+4. Hadoop Common
+These are Java libraries and utilities required by other Hadoop modules. These utilities provide the filesystem and OS level abstractions and contain the necessary Java files and scripts required to start Hadoop.
+
+For many years, Hadoop was synonymous with big data processing because it provided the means for cheap and reliable storage and efficient processing of petabytes of data. In addition to these core components, Hadoop ecosystem includes many more tools like Apache Hive for SQL-like querying of data, Apache HBase for NoSQL data storage, Apache Pig for higher-level data-flow language and execution framework for data exploration, Apache Zookeeper for configuration management and coordination, and many others.
+
+Hadoop has been pivotal in the evolution of big data and has contributed to the proliferation of big data analytics use cases. While Hadoop's popularity has seen competition from newer systems designed to address some of its shortcomings (like processing speed, memory usage, and real-time processing), it remains a fundamental technology in the space
